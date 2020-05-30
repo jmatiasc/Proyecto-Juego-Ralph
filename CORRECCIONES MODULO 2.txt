@@ -1,0 +1,79 @@
+Se nota una gran mejora con respecto a la última entrega! Alcanzaron una versión totalmente jugable y resolvieron muchos de los problemas que tenían hasta el momento. La nota obtenida en el módulo 2 es 70.
+
+Tengan en cuenta que en esta corrección no se evaluó nuevamente el módulo 1, para eso tienen disponible la entrega del flotante, en donde si lo desean también pueden hacer correcciones al módulo 2.
+
+ 
+
+Algunos comentarios y correcciones:
+
+ 
+
+*Gráfica y Funcionamiento General:
+
+ 
+
+ -Cuando se intenta jugar nuevamente después de haber perdido, aparecen errores y no permite volver a jugar.
+	Esto también genera algunos problemas con la música (se superpone más de un sonido). Lo mismo ocurre cuando se gana el Juego,------------------------------------------------------CORREGIDO
+	no llega a pasar de nivel correctamente.
+
+ - A lo que escribieron en el archivo "limitaciones del Proyecto" sumo un comentario a nivel funcionamiento: Los patos no 
+	deberían sacar vidas, solo reiniciar la sección. Igualmente, esto puede quedar así, no es necesario ajustarlo.----------------------------------------------------------------------NO SE CORRIGIO, SE DECIDIO QUE QUEDE ASI
+
+- Al ejecutar desde el jar, no funciona y arroja el siguiente error:
+                java.lang.NullPointerException
+       		 at sun.applet.AppletAudioClip.<init>(Unknown Source)
+       		 at java.applet.Applet.newAudioClip(Unknown Source)
+      		 at vista.Menu.initialize(Menu.java:61)
+        	 at controlador.Control.setMenu(Control.java:167)
+       		 at principal.Principal$1.run(Principal.java:29)
+
+- Cuando se escribe un nombre con espacios (y más de 3 letras), aparece el error de que el nombre debe tener más de tres letras.------------------------------------------------------------SE CONSIDERO QUE LOS NOMBRES NO DEBEN TENER ESPACIOS Y AL ENCONTRAR UN ESPACIO EL NOMBRE SE TRUNCA
+
+- La actualización de las entidades cada 1 segundo hace que al jugar algunas acciones no resulten tan claras (por ejemplo, cuando un ladrillo golpea a Felix),
+ pero sin embargo alcanzaron una versión que se puede jugar perfectamente y permite pasar de una sección a la otra.
+
+- Se consideraron algunos puntos extras por el uso de sonido.
+
+               
+
+*SWING y Eventos:
+
+- El uso de Swing es correcto y lograron una buena separación entra las ventanas.
+
+- El guardado de los puntajes y su visualización en la tabla también están bien.
+
+ 
+
+*Threads:
+
+- El manejo de Threads es correcto, aunque puede requerir ciertos ajustes para que funcione bien el volver a jugar.-------------------------------------------------------------------------CORREGIDO
+
+ 
+
+*Model/View/Controller:
+
+ 
+
+- La separación en general está bien. Un comentario:
+
+ La lógica de qué hacer cuando se aprieta una tecla debería pertenecer al controlador.
+ Aquí está en una clase de la vista (clase Edificio -> método accion(KeyEvent key))
+
+ 
+
+*Sintaxis Java:
+
+- El código todavía presenta problemas de formateo (indentación incorrecta).---------------------------------------------------------------------------------------------------------------SE CORRIGIO TODO EL CODIGO CON (CTRL+SHIFT+F)
+
+- No respeta convenciones Java con respecto al uso de mayúsculas/minúsculas. Las clases deben comenzar con letra mayúscula.----------------------------------------------------------------CORREGIDO
+
+ 
+
+*Excepciones:
+
+ - Si bien las excepciones propias están bien lanzadas, no se hace un manejo correcto de las mismas. Por un lado, a veces se propagan más allá de lo que deberían (hasta el main), 
+y cuando se manejan solo se imprime por consola el error. Esta lógica de lanzar el dialog debería a lo sumo estar en el catch (donde corresponda manejarla) y
+ no en la excepción misma. Además, cuando la excepción se lanza en el modelo, esto genera un dialog y no es correcto de acuerdo el patrón MVC.
+
+ 
+

@@ -1,0 +1,73 @@
+Hola, el trabajo está aprobado con 40:
+* UML:
+
+- Algunas relaciones están invertidas (por ejemplo, Felix/Juego o Seccion/Ventana). Es necesario acomodar esto 
+para que el diagrama represente fielmente lo que está en el código.---------------------------------------------------------------------------------------CORREGIDO
+
+
+* POO:
+
+Los conceptos de POO en general están bien aplicados. Aprovechan las posibilidades del polimorfismo y la herencia,
+ y hacen un uso correcto del patrón State. Les dejo sin embargo algunas correcciones:
+
+- El uso de un Builder para ventana común, en este caso no se justifica demasiado y no resulta del todo claro. Podría
+ simplificarse siendo el método azarComun quien setee las características particulares de la ventana.-----------------------------------------------------CORREGIDO
+
+- Podría evitarse comportamiento repetido entre Puerta / Semicircular.------------------------------------------------------------------------------------NO
+
+- Para representar la dirección (tanto para mover como para determinar si una ventana es accesible), utilizan un número o un String.
+ Ninguna de estas dos opciones es la más adecuada. En estos casos resultaría mucho mejor tener un enumerativo Direccion, que va---------------------------CORREGIDO
+ a ayudar a lograr un código más legible y mantenible.
+
+ 
+
+* Sintaxis Java:
+
+- No se respetan las convenciones de Java con respecto a nombres de paquetes y métodos: los paquetes deben escribirse con todas
+ letras minúsculas, y los métodos en notación camelCase comenzando en minúscula.------------------------------------------------------------------------CORREGIDO
+
+- En varias partes aparecen dobles puntos-coma (;;).----------------------------------------------------------------------------------------------------CORREGIDO
+
+- Con el formateador automático de Eclipse, la presentación del código podría mejorar bastante (Ctr+Shift+F).-------------------------------------------CORREGIDO
+
+- Las variables de Ventana moldura y florero no son del todo auto-explicativas. Sería más claro llamarlas tieneMoldura y tieneFlorero.------------------CORREGIDO
+
+- El atributo seccion dentro de Seccion no es del todo claro, podría cambiarse este nombre también.-----------------------------------------------------CORREGIDO
+
+ 
+
+* Documentación:
+
+La documentación generada es adecuada. Podría unificarse sin embargo el estilo de los comentarios, 
+para que, por ejemplo, todos comiencen con mayúscula.-------------------------------------------------------------------------------------------------CORREGIDO
+
+ 
+
+* Funcionamiento:
+
+- Si bien el main hace una simulación de algunos movimientos/eventos particulares, está faltando la
+ definición general del ciclo de ejecución. Este ciclo podría ser un loop dentro de juego que en cada
+ iteración ejecute un turno. Cada turno podría consistir en: actualizar Ralph/Felix/Ladrillos/Patos,---------------------------------------------------CORREGIDO
+ detectar colisiones, chequear condiciones de victoria/derrota.
+
+En esta entrega el movimiento de Felix era prefijado, pero la actualización del resto de las entidades ------------------------------------------------CORREGIDO
+debía ser automático (de acuerdo a la lógica del Juego) y no algo especificado en el main.
+
+- Los Patos si bien se crean, todavía no se mueven ni se detectan colisiones con ellos.----------------------------------------------------------------CORREGIDO
+
+- En el método reinicioLadrillos la invocación a subirVelocidad es innecesaria (la velocidad se setea arriba en función al nivel).---------------------CORREGIDO
+
+- La clase Nicelander está sin uso.--------------------------------------------------------------------------------------------------------------------CORREGIDO
+
+- No está completa la lógica relativa al Pastel.-------------------------------------------------------------------------------------------------------NO
+
+- Al mover a Felix, no solo hay que verificar que la ventana siguiente permita el acceso, sino que la ventana actual permita dicho movimiento.---------CORREGIDO
+
+- Los pájaros / ladrillos se mueven de a 100 posiciones (ventana a ventana), si bien esto es válido para una primera solución, 
+en lo posible traten de refinar esto para dar un movimiento más fluido. Para esto será necesario hacer ajustes también en la detección de colisiones.--CORREGIDO
+
+ 
+
+Cualquier duda sobre las correcciones o sobre cambios particulares que tengan que hacer, podemos charlarlo en clase.
+
+Saludos, Luciano
